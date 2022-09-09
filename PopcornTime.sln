@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopcornTime", "PopcornTime\PopcornTime.csproj", "{8CE70C29-69F0-4C76-A4EE-8A771A83DB52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopcornTime", "PopcornTime\PopcornTime\PopcornTime.csproj", "{8CE70C29-69F0-4C76-A4EE-8A771A83DB52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Nat", "Universal.Nat\Universal.Nat\Universal.Nat.csproj", "{4B7C52AE-58D8-4666-9A46-17CADA2DE40F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Nat", "PopcornTime\Universal.Nat\Universal.Nat\Universal.Nat.csproj", "{4B7C52AE-58D8-4666-9A46-17CADA2DE40F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Torrent", "Universal.Torrent\Universal.Torrent\Universal.Torrent.csproj", "{3DB85B88-9CA0-4DAA-8CE1-0AB6E550C9D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Torrent", "PopcornTime\Universal.Torrent\Universal.Torrent\Universal.Torrent.csproj", "{3DB85B88-9CA0-4DAA-8CE1-0AB6E550C9D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Torrent.Dht", "Universal.Torrent\Universal.Torrent.Dht\Universal.Torrent.Dht.csproj", "{4AD036AB-78A6-49C1-8250-F465CE66B181}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Torrent.Dht", "PopcornTime\Universal.Torrent\Universal.Torrent.Dht\Universal.Torrent.Dht.csproj", "{4AD036AB-78A6-49C1-8250-F465CE66B181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopcornTime.Web", "PopcornTime.Web\PopcornTime.Web.csproj", "{1165A830-5D7F-406E-B638-070C8BA8DCFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopcornTime.Web", "PopcornTime\PopcornTime.Web\PopcornTime.Web.csproj", "{1165A830-5D7F-406E-B638-070C8BA8DCFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.FluentRest", "Universal.FluentRest\Universal.FluentRest.csproj", "{4E4A941C-597D-4A34-8FC7-51452DB2437C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.FluentRest", "PopcornTime\Universal.FluentRest\Universal.FluentRest.csproj", "{4E4A941C-597D-4A34-8FC7-51452DB2437C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,8 +11,8 @@
     <AssemblyName>PopcornTime</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
@@ -23,6 +23,7 @@
     <PackageCertificateThumbprint>A0638A0387A3440B3F260E1518AA91404D6B88E8</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
     <ApplicationInsightsResourceId>/subscriptions/91866a79-31b2-4bdb-9e24-3e4f686872ed/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/PopcornTime</ApplicationInsightsResourceId>
+    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -80,6 +81,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -97,7 +99,6 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="ApplicationInsights.config" />
     <None Include="PopcornTime_StoreKey.pfx" />
-    <None Include="project.json" />
     <None Include="Service References\Application Insights\ConnectedService.json" />
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +268,10 @@
       <Project>{1165a830-5d7f-406e-b638-070c8ba8dcfd}</Project>
       <Name>PopcornTime.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Universal.FluentRest\Universal.FluentRest.csproj">
+      <Project>{4e4a941c-597d-4a34-8fc7-51452db2437c}</Project>
+      <Name>Universal.FluentRest</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Universal.Nat\Universal.Nat\Universal.Nat.csproj">
       <Project>{4b7c52ae-58d8-4666-9a46-17cada2de40f}</Project>
       <Name>Universal.Nat</Name>
@@ -284,12 +289,27 @@
     <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>Behaviors SDK %28XAML%29</Name>
-    </SDKReference>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <PackageReference Include="Autofac">
+      <Version>3.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="Humanizer">
+      <Version>1.37.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ApplicationInsights.WindowsApps">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>7.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

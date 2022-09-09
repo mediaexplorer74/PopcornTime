@@ -11,7 +11,8 @@ namespace PopcornTime.Web
     {
         public ParentalGuidesRequest(uint movieId)
         {
-            this.Url("https://yts.to/api/v2/movie_parental_guides.json").Query("movie_id", movieId);
+            //this.Url("https://yts.to/api/v2/movie_parental_guides.json").Query("movie_id", movieId);
+            this.Url("https://yts.ag/api/v2/movie_parental_guides.json").Query("movie_id", movieId);
         }
     }
 }

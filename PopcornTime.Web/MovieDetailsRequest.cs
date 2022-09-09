@@ -11,7 +11,9 @@ namespace PopcornTime.Web
     {
         public MovieDetailsRequest(uint movieId)
         {
-            this.Url("https://yts.to/api/v2/movie_details.json").Query("movie_id", movieId);
+            // * ME *
+            //this.Url("https://yts.to/api/v2/movie_details.json").Query("movie_id", movieId);
+            this.Url("https://yts.mx/api/v2/movie_details.json").Query("movie_id", movieId);
         }
 
         /// <summary>

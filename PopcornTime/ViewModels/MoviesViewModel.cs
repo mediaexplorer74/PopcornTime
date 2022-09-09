@@ -196,10 +196,14 @@ namespace PopcornTime.ViewModels
         public void CreateMovieList(Sort sort, string genre, string search)
         {
             if (genre == "All")
+            {
                 genre = null;
+            }
+
             var request = new ListMoviesRequest().Limit(100).Genre(genre).SortBy(sort).Query(search);
             if (sort == Sort.Title)
                 request.OrderBy(Order.Asc);
+
             MovieCollection = new MoviesIncrementalLoadingCollection(request);
         }
     }

@@ -14,7 +14,9 @@ namespace PopcornTime.Web
     {
         public ListMoviesRequest()
         {
-            this.Url("https://yts.to/api/v2/list_movies.json");
+            // *ME*
+            //this.Url("https://yts.to/api/v2/list_movies.json");
+            this.Url("https://yts.ag/api/v2/list_movies.json");
         }
 
         /// <summary>

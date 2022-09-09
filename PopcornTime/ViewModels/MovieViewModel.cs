@@ -10,6 +10,7 @@ using PopcornTime.Views;
 using PopcornTime.Web;
 using PopcornTime.Web.Enums;
 using PopcornTime.Web.Models;
+using System.Diagnostics;
 
 namespace PopcornTime.ViewModels
 {
@@ -67,10 +68,11 @@ namespace PopcornTime.ViewModels
             set { Set(ref _isQualityToggleEnabled, value); }
         }
 
+        // TrailerExecute
         private async void TrailerExecute()
         {
             await Launcher.LaunchUriAsync(new Uri($"https://youtu.be/{Movie.YoutubeTrailerCode}"));
-        }
+        }//TrailerExecute
 
         private void QualityToggledExecute()
         {
@@ -82,39 +84,100 @@ namespace PopcornTime.ViewModels
 
         private void PlayExecute()
         {
-            _navigationService.Navigate(typeof (StartingPage), new PlaybackTorrent
+            try
             {
-                Title = Movie.TitleLong,
-                TorrentHash = SelectedTorrent.Hash,
-                BackgroundImageUrl = Movie.Images.BackgroundImageOriginal
-            });
+                _navigationService.Navigate(typeof(StartingPage), new PlaybackTorrent
+                {
+                    Title = Movie.TitleLong,
+                    TorrentHash = SelectedTorrent.Hash,
+                    BackgroundImageUrl = Movie.Images.BackgroundImageOriginal
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[ex] PlayExecute Exception : "+ ex.Message);
+
+                // Plan B - empty frame (for RnD)
+                _navigationService.Navigate(typeof(StartingPage), new PlaybackTorrent
+                {
+                    Title = "Title",
+                    TorrentHash = "1111111111111111111111111111111111111111",
+                    BackgroundImageUrl = "https://www.infinityfoundation.org/images/thumbs/default-image_1000.png"
+                });
+
+            }
         }
 
-        public override async void OnNavigatedTo(object parameter, NavigationMode mode, Dictionary<string, object> state)
+        // 
+        public override async void OnNavigatedTo
+        (
+            object parameter, 
+            NavigationMode mode, 
+            Dictionary<string, object> state
+        )
         {
             if (state.ContainsKey("movie"))
+            {
                 Movie = state["movie"] as YtsMovieFull;
+            }
 
             if (Movie == null)
             {
                 IsLoading = true;
+                
                 var id = uint.Parse(parameter.ToString());
-                var response = await new MovieDetailsRequest(id).WithCast().WithImages().ToResponseAsync();
+
+                Universal.FluentRest.Http.RestResponse<YtsResponse<YtsMovieFull>> response 
+                    = await new MovieDetailsRequest(id).WithCast().WithImages().ToResponseAsync();
+                //Universal.FluentRest.Http.RestResponse<YtsResponse<YtsMovieFull>> response
+                //    = await new MovieDetailsRequest(id).WithCast()ToResponseAsync();
+                //Universal.FluentRest.Http.RestResponse<YtsResponse<YtsMovieFull>> response
+                //    = await new MovieDetailsRequest(id).ToResponseAsync();
+
                 IsLoading = false;
+
                 if (response.IsSuccessStatusCode)
+                {
                     Movie = response.DeserializedResponse.Data;
+                }
                 else
                 {
                     _navigationService.GoBack();
-                    CurtainPrompt.ShowError(response.DeserializedResponse?.StatusMessage ??
-                                            "Problem loading movie details.");
+                    
+                    CurtainPrompt.ShowError
+                    (
+                        response.DeserializedResponse?.StatusMessage ??
+                           "Problem loading movie details."
+                    );
                 }
             }
 
             if (Movie != null)
             {
-                var high = Movie.Torrents.FirstOrDefault(p => p.Quality == VideoQuality.Q1080);
-                var low = Movie.Torrents.FirstOrDefault(p => p.Quality == VideoQuality.Q720);
+                YtsTorrent high = null;
+
+                try
+                {
+                    high = Movie.Torrents.FirstOrDefault(p => p.Quality == VideoQuality.Q1080);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("[ex] Movie.Torrents HQ Exception : " + ex.Message);
+                    high = null;
+                }
+                
+                YtsTorrent low = null;
+
+                try
+                {
+                    low = Movie.Torrents.FirstOrDefault(p => p.Quality == VideoQuality.Q720);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("[ex] Movie.Torrents LQ Exception : " + ex.Message);
+                    low = null;
+                }
+
                 if (high != null)
                 {
                     Is1080 = true;
@@ -122,7 +185,9 @@ namespace PopcornTime.ViewModels
                     SelectedTorrent = high;
                 }
                 else
+                {
                     SelectedTorrent = low;
+                }
             }
         }
 

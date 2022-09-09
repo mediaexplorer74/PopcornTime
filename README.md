@@ -3,7 +3,11 @@
 
 Popcorn Time for Win10/Win11/Win10Mobile. Pear-to-Pear Tech Research only. Draft.
 
-This is the only fork of [https://github.com/haroldma-zz/PopcornTime](https://github.com/haroldma-zz/PopcornTime) solution.
+This is my "ugly" fork of [https://github.com/haroldma-zz/PopcornTime](https://github.com/haroldma-zz/PopcornTime) solution.
+
+Application obsolete. All its functions damaged. 
+
+Expirienced C# developers help wanted. 
 
 ## Screenshots
 ![Screenshot](Images/shot1.png)
